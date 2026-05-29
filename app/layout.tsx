@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Synex — Where tech minds connect",
+  title: "Synex",
   description: "The social app for developers, gamers and geeks. Find your tribe, join events, and make real friends in the tech world.",
 };
 
