@@ -79,16 +79,13 @@ export default function Waitlist() {
                 className="flex-1 bg-[#1A1A1A] border border-[#2A2A2A] rounded-full px-6 py-4 text-white placeholder-[#888888] focus:outline-none focus:border-[#00FF94] transition-all"
               />
 
-              {/* Botón con efecto pulso */}
-              <button
-                onClick={handleSubmit}
+            <button
+               onClick={handleSubmit}
                 disabled={loading}
-                className="relative bg-[#00FF94] text-[#0A0A0A] font-bold px-8 py-4 rounded-full hover:opacity-80 transition-all whitespace-nowrap disabled:opacity-50"
-              >
-                {/* Anillo que pulsa */}
-                <span className="absolute inset-0 rounded-full animate-ping bg-[#00FF94] opacity-20"></span>
-                {loading ? "Joining..." : "Join Waitlist 🚀"}
-              </button>
+                className="bg-[#00FF94] text-[#0A0A0A] font-bold px-8 py-4 rounded-full hover:opacity-80 transition-all whitespace-nowrap disabled:opacity-50"
+             >
+               {loading ? "Joining..." : "Join Waitlist 🚀"}
+            </button>
 
             </div>
 
