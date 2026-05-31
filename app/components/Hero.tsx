@@ -1,55 +1,80 @@
-// Hero — la sección principal que ve el usuario primero
+"use client"
+
+import { useState, useEffect } from "react"
+
+// El texto que se va a escribir solo
+const TITLE = "Where tech minds connect"
 
 export default function Hero() {
+  // displayText = el texto que se muestra en pantalla
+  // empieza vacío y va creciendo letra por letra
+  const [displayText, setDisplayText] = useState("")
+  // index = qué letra estamos escribiendo ahora
+  const [index, setIndex] = useState(0)
+  // cursor = controla si el cursor parpadeante se ve o no
+  const [cursor, setCursor] = useState(true)
+
+  useEffect(() => {
+    // Si ya escribimos todas las letras — para
+    if (index >= TITLE.length) return
+
+    // Cada 50ms añade una letra nueva
+    const timeout = setTimeout(() => {
+      setDisplayText(TITLE.slice(0, index + 1))
+      setIndex(index + 1)
+    }, 50)
+
+    return () => clearTimeout(timeout)
+  }, [index])
+
+  useEffect(() => {
+    // El cursor parpadea cada 500ms
+    const interval = setInterval(() => {
+      setCursor((prev) => !prev)
+    }, 500)
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
-      
-      {/* Badge arriba del título */} 
-      {/* inline-flex = para que el badge no ocupe todo el ancho */}
+
+      {/* Badge */}
       <div className="inline-flex items-center gap-2 bg-[#1A1A1A] border border-[#00FF94]/30 rounded-full px-4 py-2 mb-8">
         <span className="w-2 h-2 bg-[#00FF94] rounded-full animate-pulse"></span>
-        {/* animate-pulse = efecto de pulso verde */}
         <span className="text-[#00FF94] text-sm font-medium">Now in development</span>
       </div>
 
-      {/* Título principal */}
-      {/* text-6xl = texto muy grande */}
-      {/* leading-tight = líneas más juntas */}
+      {/* Título con efecto de escritura */}
       <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 max-w-4xl">
-        Where{" "}
-        {/* span con color verde para highlight */}
-        <span className="text-[#00FF94]">tech minds</span>
-        {" "}connect
+        {/* Muestra las primeras palabras normales */}
+        <span className="text-white">Where </span>
+        <span className="text-[#00FF94]">
+          {/* Muestra el texto que ya se escribió */}
+          {displayText.replace("Where ", "")}
+          {/* Cursor parpadeante */}
+          <span style={{ opacity: cursor ? 1 : 0 }}>|</span>
+        </span>
       </h1>
 
       {/* Subtítulo */}
-      {/* text-[#888888] = gris suave */}
-      {/* max-w-2xl = ancho máximo para que no sea muy largo */}
       <p className="text-[#888888] text-xl mb-10 max-w-2xl leading-relaxed">
-        The social app for developers, gamers, and geeks. 
-        Find your tribe, join events, and make real friends 
+        The social app for developers, gamers, and geeks.
+        Find your tribe, join events, and make real friends
         in the tech world. 🚀
       </p>
 
       {/* Botones */}
-      {/* flex gap-4 = botones lado a lado con espacio */}
       <div className="flex flex-col sm:flex-row gap-4">
-        
-        {/* Botón principal */}
         <button className="bg-[#00FF94] text-[#0A0A0A] font-bold px-8 py-4 rounded-full text-lg hover:opacity-80 transition-all">
           Join the Waitlist 🎉
         </button>
-
-        {/* Botón secundario */}
-        {/* border = borde */}
-        {/* border-[#1A1A1A] = borde oscuro */}
         <button className="border border-[#1A1A1A] text-white font-bold px-8 py-4 rounded-full text-lg hover:border-[#00FF94] transition-all">
           See how it works →
         </button>
-
       </div>
 
-      {/* Stats debajo de los botones */}
+      {/* Stats */}
       <div className="flex gap-12 mt-16">
         <div>
           <p className="text-[#00FF94] font-bold text-3xl">500+</p>

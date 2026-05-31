@@ -80,12 +80,15 @@ export default function Waitlist() {
                 onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
                 className="flex-1 bg-[#1A1A1A] border border-[#2A2A2A] rounded-full px-6 py-4 text-white placeholder-[#888888] focus:outline-none focus:border-[#00FF94] transition-all"
               />
-              <button
-                onClick={handleSubmit}
-                // disabled = desactiva el botón mientras carga
-                disabled={loading}
-                className="bg-[#00FF94] text-[#0A0A0A] font-bold px-8 py-4 rounded-full hover:opacity-80 transition-all whitespace-nowrap disabled:opacity-50"
-              >
+            <button
+              onClick={handleSubmit}
+               disabled={loading}
+              className="relative bg-[#00FF94] text-[#0A0A0A] font-bold px-8 py-4 rounded-full hover:opacity-80 transition-all whitespace-nowrap disabled:opacity-50"
+            >
+               {/* Anillo que pulsa alrededor del botón */}
+               <span className="absolute inset-0 rounded-full animate-ping bg-[#00FF94] opacity-20"></span>
+              {loading ? "Joining..." : "Join Waitlist 🚀"}
+            </button>
                 {/* Muestra texto diferente según el estado */}
                 {loading ? "Joining..." : "Join Waitlist 🚀"}
               </button>
