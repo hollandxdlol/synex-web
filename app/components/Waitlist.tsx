@@ -41,7 +41,7 @@ export default function Waitlist() {
   }
 
   return (
-    <section className="py-24 px-6">
+    <section id="waitlist" className="py-24 px-6">
       <div className="max-w-2xl mx-auto text-center">
 
         {/* Título */}

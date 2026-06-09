@@ -28,7 +28,7 @@ export async function POST(request: Request) {
     await resend.emails.send({
       // from = debe ser un email verificado en Resend
       // por ahora usamos el dominio de Resend gratis
-      from: "Synex <hello@synexapp.com>",
+      from: "Synex <onboarding@resend.dev>",
       to: email,
       subject: "You're on the Synex waitlist! 🚀",
       html: `

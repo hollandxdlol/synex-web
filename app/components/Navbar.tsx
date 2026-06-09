@@ -1,3 +1,5 @@
+"use client"
+
 export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-[#0A0A0A]/80 backdrop-blur-md border-b border-[#1A1A1A]">
@@ -11,7 +13,10 @@ export default function Navbar() {
         </span>
 
         {/* Botón waitlist */}
-        <button className="bg-[#00FF94] text-[#0A0A0A] font-bold px-6 py-2 rounded-full hover:opacity-80 transition-all">
+        <button
+          onClick={() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })}
+          className="bg-[#00FF94] text-[#0A0A0A] font-bold px-6 py-2 rounded-full hover:opacity-80 transition-all"
+        >
           Join Waitlist
         </button>
 

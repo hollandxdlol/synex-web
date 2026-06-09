@@ -39,7 +39,7 @@ const features = [
 export default function Features() {
   return (
     // py-24 = padding vertical grande para separar secciones
-    <section className="py-24 px-6">
+    <section id="features" className="py-24 px-6">
       
       {/* Contenedor centrado */}
       <div className="max-w-6xl mx-auto">

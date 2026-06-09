@@ -1,3 +1,5 @@
+"use client"
+
 export default function Hero() {
   return (
     <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
@@ -20,10 +22,16 @@ export default function Hero() {
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4">
-        <button className="bg-[#00FF94] text-[#0A0A0A] font-bold px-8 py-4 rounded-full text-lg hover:opacity-80 transition-all">
+        <button
+          onClick={() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })}
+          className="bg-[#00FF94] text-[#0A0A0A] font-bold px-8 py-4 rounded-full text-lg hover:opacity-80 transition-all"
+        >
           Join the Waitlist 🎉
         </button>
-        <button className="border border-[#1A1A1A] text-white font-bold px-8 py-4 rounded-full text-lg hover:border-[#00FF94] transition-all">
+        <button
+          onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+          className="border border-[#1A1A1A] text-white font-bold px-8 py-4 rounded-full text-lg hover:border-[#00FF94] transition-all"
+        >
           See how it works →
         </button>
       </div>
