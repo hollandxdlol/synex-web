@@ -7,7 +7,7 @@ const features = [
   {
     icon: "🔍",
     title: "Discover People",
-    description: "Match with developers, gamers and geeks by stack and interests. Like Tinder but for tech friendships."
+    description: "Match with developers, gamers and geeks by stack and interests. Swipe through profiles and find your people."
   },
   {
     icon: "📅",
