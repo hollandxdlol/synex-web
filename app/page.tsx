@@ -7,6 +7,14 @@ const LOGIN_URL = 'https://app.synexapp.com/login'
 
 function go(url: string) { window.location.href = url }
 
+const SKILLS = [
+  'React', 'Next.js', 'TypeScript', 'Python', 'Node.js', 'AWS', 'Docker',
+  'Kubernetes', 'Rust', 'Go', 'Swift', 'Kotlin', 'Flutter', 'AI / ML',
+  'Web3', 'GraphQL', 'PostgreSQL', 'MongoDB', 'Figma', 'DevOps',
+  'Firebase', 'Vue.js', 'Cybersecurity', 'iOS', 'Android', 'Linux',
+  'Redis', 'Terraform', 'GitHub Actions', 'OpenAI', 'Solidity', 'WASM',
+]
+
 const FEATURES = [
   {
     title: 'Smart Matching',
@@ -127,6 +135,26 @@ export default function Page() {
             </button>
           </div>
         </div>
+
+        {/* Skills ticker — pinned to bottom of hero */}
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, paddingBottom: 40, zIndex: 1 }}>
+          {/* Row 1 — left to right */}
+          <div style={{ overflow: 'hidden', marginBottom: 10 }}>
+            <div style={{ display: 'inline-flex', gap: 10, animation: 'ticker 30s linear infinite', whiteSpace: 'nowrap' }}>
+              {[...SKILLS, ...SKILLS].map((s, i) => (
+                <span key={i} style={skillPill}>{s}</span>
+              ))}
+            </div>
+          </div>
+          {/* Row 2 — right to left */}
+          <div style={{ overflow: 'hidden' }}>
+            <div style={{ display: 'inline-flex', gap: 10, animation: 'ticker-reverse 35s linear infinite', whiteSpace: 'nowrap' }}>
+              {[...SKILLS.slice(12), ...SKILLS, ...SKILLS.slice(0, 12)].map((s, i) => (
+                <span key={i} style={skillPill}>{s}</span>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ── FEATURES ────────────────────────────────────────────── */}
@@ -207,35 +235,98 @@ export default function Page() {
           <p style={{ color: '#555', fontSize: 16, marginBottom: 36 }}>
             Join 12,000+ developers and designers on Synex.
           </p>
-          <button onClick={() => go(REGISTER_URL)} className="glow-btn" style={primaryBtnLg}>
+          <button onClick={() => go(REGISTER_URL)} className="glow-btn" style={{ ...primaryBtnLg, margin: '0 auto' }}>
             Create Free Account
           </button>
         </div>
       </section>
 
       {/* ── FOOTER ──────────────────────────────────────────────── */}
-      <footer style={{ borderTop: '1px solid rgba(255,255,255,0.05)', padding: '28px 24px' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ width: 26, height: 26, borderRadius: 6, background: '#00FF94', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-              </svg>
+      <footer style={{ borderTop: '1px solid rgba(255,255,255,0.05)', padding: '56px 24px 32px' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          {/* Top row */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 48, marginBottom: 52 }}>
+            {/* Brand */}
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+                <div style={{ width: 28, height: 28, borderRadius: 7, background: '#00FF94', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                  </svg>
+                </div>
+                <span style={{ fontWeight: 700, fontSize: 14, letterSpacing: '0.1em', color: '#fff' }}>SYNEX</span>
+              </div>
+              <p style={{ color: '#444', fontSize: 13, lineHeight: 1.7 }}>
+                The social network for the tech community.
+              </p>
             </div>
-            <span style={{ fontWeight: 700, fontSize: 13, letterSpacing: '0.1em', color: '#fff' }}>SYNEX</span>
+
+            {/* Platform links */}
+            <div>
+              <p style={{ color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>Platform</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {[
+                  { label: 'Features', action: () => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' }) },
+                  { label: 'Mentorship', action: () => document.getElementById('mentorship')?.scrollIntoView({ behavior: 'smooth' }) },
+                  { label: 'Create Account', action: () => go(REGISTER_URL) },
+                  { label: 'Sign In', action: () => go(LOGIN_URL) },
+                ].map(l => (
+                  <button key={l.label} onClick={l.action} style={footerLink}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#444')}
+                  >{l.label}</button>
+                ))}
+              </div>
+            </div>
+
+            {/* Legal */}
+            <div>
+              <p style={{ color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>Legal</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {[
+                  { label: 'Privacy Policy', url: 'https://app.synexapp.com/privacy' },
+                  { label: 'Terms of Service', url: 'https://app.synexapp.com/terms' },
+                ].map(l => (
+                  <button key={l.label} onClick={() => go(l.url)} style={footerLink}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#444')}
+                  >{l.label}</button>
+                ))}
+              </div>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <p style={{ color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>Contact</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {[
+                  'support@synexapp.com',
+                  'privacy@synexapp.com',
+                  'legal@synexapp.com',
+                ].map(email => (
+                  <a key={email} href={`mailto:${email}`} style={{ ...footerLink, textDecoration: 'none' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#444')}
+                  >{email}</a>
+                ))}
+              </div>
+              <div style={{ marginTop: 20, display: 'flex', alignItems: 'center', gap: 6 }}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span style={{ color: '#444', fontSize: 12 }}>Panama City, Panama</span>
+              </div>
+            </div>
           </div>
-          <div style={{ display: 'flex', gap: 24 }}>
-            {[
-              { label: 'Privacy', url: 'https://app.synexapp.com/privacy' },
-              { label: 'Terms', url: 'https://app.synexapp.com/terms' },
-            ].map(l => (
-              <button key={l.label} onClick={() => go(l.url)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#444', fontSize: 13, transition: 'color 0.2s' }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#444')}
-              >{l.label}</button>
-            ))}
+
+          {/* Bottom bar */}
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: 24, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
+            <p style={{ color: '#333', fontSize: 12 }}>© {new Date().getFullYear()} Synex. All rights reserved.</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#00FF94', boxShadow: '0 0 6px #00FF94' }} />
+              <span style={{ color: '#333', fontSize: 12 }}>All systems operational</span>
+            </div>
           </div>
-          <p style={{ color: '#333', fontSize: 12 }}>© {new Date().getFullYear()} Synex</p>
         </div>
       </footer>
 
@@ -268,4 +359,17 @@ const outlineBtn: React.CSSProperties = {
   color: '#888', borderRadius: 14, cursor: 'pointer',
   fontWeight: 600, fontSize: 15, padding: '14px 28px',
   transition: 'all 0.2s',
+}
+const skillPill: React.CSSProperties = {
+  display: 'inline-flex', alignItems: 'center',
+  padding: '6px 14px', borderRadius: 999,
+  border: '1px solid rgba(255,255,255,0.07)',
+  background: 'rgba(255,255,255,0.03)',
+  color: '#555', fontSize: 12, fontWeight: 500,
+  letterSpacing: '0.01em', flexShrink: 0,
+}
+const footerLink: React.CSSProperties = {
+  background: 'none', border: 'none', cursor: 'pointer',
+  color: '#444', fontSize: 13, textAlign: 'left',
+  padding: 0, transition: 'color 0.2s',
 }

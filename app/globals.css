@@ -52,6 +52,10 @@ body {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+@keyframes ticker-reverse {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
 @keyframes ping-slow {
   0%        { transform: scale(1); opacity: 1; }
   75%, 100% { transform: scale(2); opacity: 0; }
