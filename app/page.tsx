@@ -173,6 +173,98 @@ export default function Page() {
         </div>
       </section>
 
+      {/* ── INTERESTS ───────────────────────────────────────────── */}
+      <section style={{ padding: '0 24px 120px' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <div className="reveal" style={{ marginBottom: 56 }}>
+            <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 900, letterSpacing: '-0.02em', marginBottom: 12 }}>
+              Find your people.
+            </h2>
+            <p style={{ color: '#555', fontSize: 16, maxWidth: 380 }}>
+              Not just by stack — by what you're actually into.
+            </p>
+          </div>
+
+          <div className="reveal reveal-delay-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
+            {[
+              {
+                icon: '🎮',
+                label: 'Gamers',
+                desc: 'Find teammates, stream together, talk builds.',
+                color: 'rgba(139,92,246,0.12)',
+                border: 'rgba(139,92,246,0.2)',
+                glow: 'rgba(139,92,246,0.08)',
+              },
+              {
+                icon: '🎬',
+                label: 'Content Creators',
+                desc: 'Collab on videos, podcasts, and streams.',
+                color: 'rgba(239,68,68,0.1)',
+                border: 'rgba(239,68,68,0.18)',
+                glow: 'rgba(239,68,68,0.06)',
+              },
+              {
+                icon: '💻',
+                label: 'Developers',
+                desc: 'Build side projects. Review code. Share learnings.',
+                color: 'rgba(0,255,148,0.08)',
+                border: 'rgba(0,255,148,0.18)',
+                glow: 'rgba(0,255,148,0.05)',
+              },
+              {
+                icon: '🎨',
+                label: 'Designers',
+                desc: 'Share portfolios, get feedback, find clients.',
+                color: 'rgba(59,130,246,0.1)',
+                border: 'rgba(59,130,246,0.18)',
+                glow: 'rgba(59,130,246,0.06)',
+              },
+              {
+                icon: '🚀',
+                label: 'Founders',
+                desc: 'Find co-founders, advisors, and early users.',
+                color: 'rgba(245,158,11,0.1)',
+                border: 'rgba(245,158,11,0.18)',
+                glow: 'rgba(245,158,11,0.06)',
+              },
+              {
+                icon: '🤖',
+                label: 'AI Builders',
+                desc: 'Explore models, share projects, push the frontier.',
+                color: 'rgba(20,184,166,0.1)',
+                border: 'rgba(20,184,166,0.18)',
+                glow: 'rgba(20,184,166,0.06)',
+              },
+            ].map(card => (
+              <div
+                key={card.label}
+                style={{
+                  padding: '28px 24px',
+                  borderRadius: 18,
+                  border: `1px solid ${card.border}`,
+                  background: card.color,
+                  boxShadow: `0 0 40px ${card.glow}`,
+                  transition: 'transform 0.25s ease, box-shadow 0.25s ease',
+                  cursor: 'default',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-4px)'
+                  e.currentTarget.style.boxShadow = `0 12px 40px ${card.glow}, 0 0 0 1px ${card.border}`
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = `0 0 40px ${card.glow}`
+                }}
+              >
+                <div style={{ fontSize: 28, marginBottom: 14 }}>{card.icon}</div>
+                <p style={{ color: '#fff', fontWeight: 700, fontSize: 15, marginBottom: 8 }}>{card.label}</p>
+                <p style={{ color: '#555', fontSize: 13, lineHeight: 1.6 }}>{card.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── MENTORSHIP ──────────────────────────────────────────── */}
       <section id="mentorship" style={{ padding: '80px 24px 120px', position: 'relative', overflow: 'hidden' }}>
         <div className="orb" style={{ width: 500, height: 500, bottom: -200, left: -150, background: '#00FF94', opacity: 0.07, animationDelay: '2s' }} />
