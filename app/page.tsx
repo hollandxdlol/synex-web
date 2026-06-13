@@ -137,22 +137,11 @@ export default function Page() {
         </div>
 
         {/* Skills ticker — pinned to bottom of hero */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, paddingBottom: 40, zIndex: 1 }}>
-          {/* Row 1 — left to right */}
-          <div style={{ overflow: 'hidden', marginBottom: 10 }}>
-            <div style={{ display: 'inline-flex', gap: 10, animation: 'ticker 30s linear infinite', whiteSpace: 'nowrap' }}>
-              {[...SKILLS, ...SKILLS].map((s, i) => (
-                <span key={i} style={skillPill}>{s}</span>
-              ))}
-            </div>
-          </div>
-          {/* Row 2 — right to left */}
-          <div style={{ overflow: 'hidden' }}>
-            <div style={{ display: 'inline-flex', gap: 10, animation: 'ticker-reverse 35s linear infinite', whiteSpace: 'nowrap' }}>
-              {[...SKILLS.slice(12), ...SKILLS, ...SKILLS.slice(0, 12)].map((s, i) => (
-                <span key={i} style={skillPill}>{s}</span>
-              ))}
-            </div>
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, paddingBottom: 48, zIndex: 1, overflow: 'hidden' }}>
+          <div style={{ display: 'inline-flex', gap: 16, animation: 'ticker 40s linear infinite', whiteSpace: 'nowrap' }}>
+            {[...SKILLS, ...SKILLS].map((s, i) => (
+              <span key={i} style={skillPill}>{s}</span>
+            ))}
           </div>
         </div>
       </section>
@@ -362,11 +351,11 @@ const outlineBtn: React.CSSProperties = {
 }
 const skillPill: React.CSSProperties = {
   display: 'inline-flex', alignItems: 'center',
-  padding: '6px 14px', borderRadius: 999,
-  border: '1px solid rgba(255,255,255,0.07)',
-  background: 'rgba(255,255,255,0.03)',
-  color: '#555', fontSize: 12, fontWeight: 500,
-  letterSpacing: '0.01em', flexShrink: 0,
+  padding: '7px 18px', borderRadius: 999,
+  border: '1px solid rgba(0,255,148,0.25)',
+  background: 'rgba(0,255,148,0.04)',
+  color: '#666', fontSize: 12, fontWeight: 500,
+  letterSpacing: '0.02em', flexShrink: 0,
 }
 const footerLink: React.CSSProperties = {
   background: 'none', border: 'none', cursor: 'pointer',
